@@ -1,15 +1,22 @@
 ///|
 pub suberror FlashError {
-  InvalidHex(Int, String)
+  InvalidHex(Int32, String)
   InvalidPartition
 }
 
 ///|
+#derive(Debug, Eq)
 pub struct Range {
   first : Int64
   end_exclusive : Int64
-  line : Int
-} derive(Debug, Eq)
+  line : Int32
+}
+
+///|
+pub extend Range with @debug.Debug::{to_repr}
+
+///|
+pub extend Range with Eq::{not_equal, equal}
 
 ///|
 pub struct Image {
@@ -19,9 +26,9 @@ pub struct Image {
 ///|
 fn byte_at(
   record : StringView,
-  offset : Int,
-  line : Int,
-) -> Int raise FlashError {
+  offset : Int32,
+  line : Int32,
+) -> Int32 raise FlashError {
   let field = record[offset:offset + 2]
   for ch in field {
     if !ch.is_ascii_hexdigit() {
@@ -76,7 +83,7 @@ pub fn parse(text : String) -> Image raise FlashError {
           raise InvalidHex(line, "data record crosses its address window")
         }
         if count > 0 {
-          ranges.push({ first, end_exclusive, line })
+          ranges.push({ first, end_exclusive, line, })
         }
       }
       1 if address == 0 && count == 0 => eof = true

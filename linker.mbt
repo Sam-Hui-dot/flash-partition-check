@@ -4,16 +4,23 @@ pub suberror LayoutError {
 }
 
 ///|
+#derive(Debug, Eq)
 pub(all) struct Partition {
   name : String
   first : Int64
   size : Int64
-} derive(Debug, Eq)
+}
+
+///|
+pub extend Partition with @debug.Debug::{to_repr}
+
+///|
+pub extend Partition with Eq::{not_equal, equal}
 
 ///|
 priv struct LayoutTokens {
   items : Array[String]
-  mut offset : Int
+  mut offset : Int32
 }
 
 ///|
@@ -83,7 +90,7 @@ fn layout_tokens(text : String) -> LayoutTokens raise LayoutError {
       items.push(text[start:index].to_owned())
     }
   }
-  { items, offset: 0 }
+  { items, offset: 0, }
 }
 
 ///|
@@ -182,7 +189,7 @@ pub fn partition_from_linker(
       if first >= address_limit || size <= 0L || size > address_limit - first {
         raise InvalidLayout("invalid region bounds")
       }
-      selected = Some({ name, first, size })
+      selected = Some({ name, first, size, })
     }
   }
   match selected {
