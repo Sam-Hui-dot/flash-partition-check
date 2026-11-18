@@ -42,3 +42,24 @@ FLASH 范围外区段被拒绝。所有违规地址与 IntelHex 的地址集合�
 MEMORY 的 ORIGIN/LENGTH 支持十进制、十六进制、K/M、括号与加减。
 不支持的表达式明确报错。此案例使用板厂提供的预编译固件，并在静态文件上验证。
 详细算法、复用基线和 AI 使用情况见 DESIGN.md。
+
+## 批量检查一份烧录计划
+
+```powershell
+moon run cmd/main -- --manifest demo/release-plan.json --json
+```
+
+JSON 计划由 `partitions` 与 `images` 两个数组组成。分区提供 `name`、`start` 与 `size`，地址与长度使用 `0x` 十六进制字符串。`reserved: true` 保护不应写入的区域。镜像提供 `name`、`file`、`partition`。相对路径以计划文件为基准，只对可信计划执行文件读取。
+
+执行时逐条检查实际占用的地址区间。结果报告三类问题：镜像写出目标分区、写入保留区、两份镜像写入同一片地址。区间以左闭右开表示，空洞和相邻边界不产生碰撞。JSON 带镜像名、精确地址、相关 HEX 行号以及占用字节数，可接入发布门禁。分区重叠、未知字段和无效文件属于输入错误。退出码 0 通过、1 有地址问题、2 输入有误。
+
+```sh
+moon build
+python demo/verify-vendor.py
+python demo/verify-plan.py
+python tools/source-lines.py
+```
+
+批量复验用同一个厂商固件的系统和应用切片构造无碰撞计划，再误填整包并加入一个合成的保留区字节。完整报告与 Python IntelHex 的实际地址集合对照。该工具用于静态检查，不烧录、不模拟硬件擦除页和启动行为。
+
+在 MoonBit 项目中可用 `parse_manifest`、`parse` 与 `audit_plan` 分别读取计划、解析镜像和执行检查。文件读取留在应用层，核心可在 JS、WasmGC 和 Native 上运行。

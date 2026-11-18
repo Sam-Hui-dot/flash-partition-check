@@ -11,16 +11,16 @@
 
 name = "Sam-Hui-dot/flash-partition-check"
 
-version = "0.1.0"
+version = "0.2.0"
 
-readme = "README.mbt.md"
+readme = "README.md"
 
 repository = ""
 
 license = "Apache-2.0"
 
-keywords = [ ]
+keywords = [ "intel-hex", "firmware", "flash", "embedded" ]
 
 preferred_target = "js"
 
-description = ""
+description = "Validate Intel HEX flash plans, reserved regions, and image collisions"
