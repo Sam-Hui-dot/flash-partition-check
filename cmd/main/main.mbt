@@ -30,8 +30,8 @@ fn main {
     } else {
       @flash.Partition::{
         name: args[3],
-        first: @string.parse_int64(args[4][:], base=16),
-        size: @string.parse_int64(args[5][:], base=16),
+        first: @flash.parse_address(args[4][:], radix=16),
+        size: @flash.parse_address(args[5][:], radix=16),
       }
     }
     let image_path = if args[2] == "--linker" { args[3] } else { args[2] }

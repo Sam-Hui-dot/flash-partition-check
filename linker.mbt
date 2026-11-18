@@ -110,11 +110,11 @@ fn LayoutTokens::constant(self : LayoutTokens) -> Int64 raise LayoutError {
     (token, 1L)
   }
   let value = if number.has_prefix("0x") || number.has_prefix("0X") {
-    @string.parse_int64(number[2:], base=16) catch {
+    parse_address(number[2:], radix=16) catch {
       _ => raise InvalidLayout("unsupported constant \{token}")
     }
   } else {
-    @string.parse_int64(number[:], base=10) catch {
+    parse_address(number[:], radix=10) catch {
       _ => raise InvalidLayout("unsupported constant \{token}")
     }
   }

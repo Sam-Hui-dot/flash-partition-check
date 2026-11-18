@@ -35,13 +35,43 @@ fn byte_at(
       raise InvalidHex(line, "invalid hexadecimal digit")
     }
   }
-  @string.parse_int(field, base=16) catch {
+  parse_address(field).to_int() catch {
     _ => raise InvalidHex(line, "invalid hexadecimal byte")
   }
 }
 
 ///|
 let address_limit : Int64 = 0x1_0000_0000L
+
+///|
+/// Parse an unsigned address or size with explicit overflow checking.
+pub fn parse_address(
+  text : StringView,
+  radix~ : Int32 = 16,
+) -> Int64 raise FlashError {
+  if text.is_empty() || (radix != 10 && radix != 16) {
+    raise InvalidPartition
+  }
+  let mut value = 0L
+  for ch in text {
+    let scalar = ch.to_int()
+    let digit = if scalar >= 48 && scalar <= 57 {
+      scalar - 48
+    } else if scalar >= 65 && scalar <= 70 {
+      scalar - 55
+    } else if scalar >= 97 && scalar <= 102 {
+      scalar - 87
+    } else {
+      raise InvalidPartition
+    }
+    if digit >= radix ||
+      value > (address_limit - digit.to_int64()) / radix.to_int64() {
+      raise InvalidPartition
+    }
+    value = value * radix.to_int64() + digit.to_int64()
+  }
+  value
+}
 
 ///|
 /// Decode and validate an Intel HEX image. The address map is sparse.

@@ -51,7 +51,7 @@ fn hex_field(
       raise InvalidPlan("\{context}.\{field} has an invalid hexadecimal digit")
     }
   }
-  @string.parse_int64(value[2:], base=16) catch {
+  parse_address(value[2:], radix=16) catch {
     _ =>
       raise InvalidPlan("\{context}.\{field} has an invalid hexadecimal value")
   }

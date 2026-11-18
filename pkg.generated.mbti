@@ -16,6 +16,8 @@ pub fn outside_partition(Image, Int64, Int64) -> Array[Range] raise FlashError
 
 pub fn parse(String) -> Image raise FlashError
 
+pub fn parse_address(StringView, radix? : Int32) -> Int64 raise FlashError
+
 pub fn parse_manifest(String) -> FlashPlan raise PlanError
 
 pub fn partition_from_linker(String, String) -> Partition raise LayoutError
