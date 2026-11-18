@@ -1,0 +1,46 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Sam-Hui-dot/flash-partition-check"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn coalesce_violations(Array[Range]) -> Array[Range]
+
+pub fn outside_partition(Image, Int64, Int64) -> Array[Range] raise FlashError
+
+pub fn parse(String) -> Image raise FlashError
+
+pub fn partition_from_linker(String, String) -> Partition raise LayoutError
+
+// Errors
+pub suberror FlashError {
+  InvalidHex(Int, String)
+  InvalidPartition
+}
+
+pub suberror LayoutError {
+  InvalidLayout(String)
+}
+
+// Types and methods
+pub struct Image {
+  // private fields
+}
+
+pub(all) struct Partition {
+  name : String
+  first : Int64
+  size : Int64
+} derive(Eq, @debug.Debug)
+
+pub struct Range {
+  first : Int64
+  end_exclusive : Int64
+  line : Int
+} derive(Eq, @debug.Debug)
+
+// Type aliases
+
+// Traits
