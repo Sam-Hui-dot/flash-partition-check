@@ -15,7 +15,7 @@ version = "0.2.0"
 
 readme = "README.md"
 
-repository = ""
+repository = "https://github.com/Sam-Hui-dot/flash-partition-check"
 
 license = "Apache-2.0"
 
