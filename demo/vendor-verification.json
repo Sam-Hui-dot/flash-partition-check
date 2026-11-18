@@ -1,0 +1,134 @@
+[
+  {
+    "example": "ble_app_blinky",
+    "image": "ble_app_blinky_application.hex",
+    "exit_code": 0,
+    "application_bytes": 27048,
+    "application_segments": [
+      [
+        155648,
+        182696
+      ]
+    ],
+    "oracle_violations": [
+      [
+        0,
+        2584
+      ],
+      [
+        4096,
+        155260
+      ]
+    ],
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/makerdiary/nrf52840-mdk/52ba5cb08562324e58a3090ff6a17c7b2daa7d2e/examples/nrf5-sdk/ble_app_blinky/armgcc/ble_app_blinky_gcc_nrf52.ld",
+        "sha256": "a60227bbde92e97457362a6769f797df706327bd19136467397efa699316af0a"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/makerdiary/nrf52840-mdk/52ba5cb08562324e58a3090ff6a17c7b2daa7d2e/examples/nrf5-sdk/ble_app_blinky/hex/ble_app_blinky_nrf52840_mdk_s140.hex",
+        "sha256": "d13c24c21104da2823ff363cd292213fe54082b7a7c96790392ba94be696cdc6"
+      }
+    ],
+    "output": "PASS: all data records are inside FLASH"
+  },
+  {
+    "example": "ble_app_blinky",
+    "image": "ble_app_blinky_nrf52840_mdk_s140.hex",
+    "exit_code": 1,
+    "application_bytes": 27048,
+    "application_segments": [
+      [
+        155648,
+        182696
+      ]
+    ],
+    "oracle_violations": [
+      [
+        0,
+        2584
+      ],
+      [
+        4096,
+        155260
+      ]
+    ],
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/makerdiary/nrf52840-mdk/52ba5cb08562324e58a3090ff6a17c7b2daa7d2e/examples/nrf5-sdk/ble_app_blinky/armgcc/ble_app_blinky_gcc_nrf52.ld",
+        "sha256": "a60227bbde92e97457362a6769f797df706327bd19136467397efa699316af0a"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/makerdiary/nrf52840-mdk/52ba5cb08562324e58a3090ff6a17c7b2daa7d2e/examples/nrf5-sdk/ble_app_blinky/hex/ble_app_blinky_nrf52840_mdk_s140.hex",
+        "sha256": "d13c24c21104da2823ff363cd292213fe54082b7a7c96790392ba94be696cdc6"
+      }
+    ],
+    "output": "FAIL: 2 out-of-partition intervals in D:\\Users\\Sam\\Documents\\Codex\\2026-11-13\\gemini\\work\\flash-partition-check\\demo\\_build\\makerdiary\\ble_app_blinky_nrf52840_mdk_s140.hex\nFAIL D:\\Users\\Sam\\Documents\\Codex\\2026-11-13\\gemini\\work\\flash-partition-check\\demo\\_build\\makerdiary\\ble_app_blinky_nrf52840_mdk_s140.hex:2: [0x0, 0xa18) outside FLASH\nFAIL D:\\Users\\Sam\\Documents\\Codex\\2026-11-13\\gemini\\work\\flash-partition-check\\demo\\_build\\makerdiary\\ble_app_blinky_nrf52840_mdk_s140.hex:164: [0x1000, 0x25e7c) outside FLASH"
+  },
+  {
+    "example": "ble_app_hrs",
+    "image": "ble_app_hrs_application.hex",
+    "exit_code": 0,
+    "application_bytes": 114968,
+    "application_segments": [
+      [
+        155648,
+        270616
+      ]
+    ],
+    "oracle_violations": [
+      [
+        0,
+        2584
+      ],
+      [
+        4096,
+        155260
+      ]
+    ],
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/makerdiary/nrf52840-mdk/52ba5cb08562324e58a3090ff6a17c7b2daa7d2e/examples/nrf5-sdk/ble_app_hrs/armgcc/ble_app_hrs_gcc_nrf52.ld",
+        "sha256": "2b5b1fc19f01652bae0dc95780d6eb8fd0844de0b703439eaba87f38ee6ac990"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/makerdiary/nrf52840-mdk/52ba5cb08562324e58a3090ff6a17c7b2daa7d2e/examples/nrf5-sdk/ble_app_hrs/hex/ble_app_hrs_nrf52840_mdk_s140.hex",
+        "sha256": "985fb50fe8e6a9570132792be40097f1457988a720be61bb96b13c737ad491fa"
+      }
+    ],
+    "output": "PASS: all data records are inside FLASH"
+  },
+  {
+    "example": "ble_app_hrs",
+    "image": "ble_app_hrs_nrf52840_mdk_s140.hex",
+    "exit_code": 1,
+    "application_bytes": 114968,
+    "application_segments": [
+      [
+        155648,
+        270616
+      ]
+    ],
+    "oracle_violations": [
+      [
+        0,
+        2584
+      ],
+      [
+        4096,
+        155260
+      ]
+    ],
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/makerdiary/nrf52840-mdk/52ba5cb08562324e58a3090ff6a17c7b2daa7d2e/examples/nrf5-sdk/ble_app_hrs/armgcc/ble_app_hrs_gcc_nrf52.ld",
+        "sha256": "2b5b1fc19f01652bae0dc95780d6eb8fd0844de0b703439eaba87f38ee6ac990"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/makerdiary/nrf52840-mdk/52ba5cb08562324e58a3090ff6a17c7b2daa7d2e/examples/nrf5-sdk/ble_app_hrs/hex/ble_app_hrs_nrf52840_mdk_s140.hex",
+        "sha256": "985fb50fe8e6a9570132792be40097f1457988a720be61bb96b13c737ad491fa"
+      }
+    ],
+    "output": "FAIL: 2 out-of-partition intervals in D:\\Users\\Sam\\Documents\\Codex\\2026-11-13\\gemini\\work\\flash-partition-check\\demo\\_build\\makerdiary\\ble_app_hrs_nrf52840_mdk_s140.hex\nFAIL D:\\Users\\Sam\\Documents\\Codex\\2026-11-13\\gemini\\work\\flash-partition-check\\demo\\_build\\makerdiary\\ble_app_hrs_nrf52840_mdk_s140.hex:2: [0x0, 0xa18) outside FLASH\nFAIL D:\\Users\\Sam\\Documents\\Codex\\2026-11-13\\gemini\\work\\flash-partition-check\\demo\\_build\\makerdiary\\ble_app_hrs_nrf52840_mdk_s140.hex:164: [0x1000, 0x25e7c) outside FLASH"
+  }
+]
