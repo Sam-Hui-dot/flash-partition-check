@@ -1,0 +1,7 @@
+import {
+  "Sam-Hui-dot/flash-partition-check" @flash,
+  "moonbitlang/core/env",
+  "moonbitlang/core/string",
+}
+
+pkgtype(kind: "executable")
