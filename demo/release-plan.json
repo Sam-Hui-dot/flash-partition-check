@@ -1,0 +1,10 @@
+{
+  "partitions": [
+    {"name": "boot", "start": "0x0", "size": "0x26000", "reserved": true},
+    {"name": "application", "start": "0x26000", "size": "0xc7000"},
+    {"name": "configuration", "start": "0xed000", "size": "0x13000", "reserved": true}
+  ],
+  "images": [
+    {"name": "app", "file": "application.hex", "partition": "application"}
+  ]
+}

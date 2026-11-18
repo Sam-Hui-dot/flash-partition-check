@@ -1,0 +1,8 @@
+{
+  "clean_vendor_partition_plan": "pass",
+  "mutated_full_image": {
+    "outside_partition": 153749,
+    "reserved_write": 1,
+    "collision": 153748
+  }
+}
