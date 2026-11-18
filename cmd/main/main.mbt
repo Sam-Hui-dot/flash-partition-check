@@ -6,14 +6,20 @@ extern "js" fn read_text(path : String) -> String =
   #|}
 
 ///|
-extern "js" fn exit_with(code : Int) -> Unit = "(code) => { process.exitCode = code; }"
+extern "js" fn exit_with(code : Int32) -> Unit = "(code) => { process.exitCode = code; }"
 
 ///|
 fn main {
   let args = @env.args()
+  if args.length() >= 3 && args[2] == "--manifest" {
+    if args.length() == 4 || (args.length() == 5 && args[4] == "--json") {
+      run_manifest(args[3], args.length() == 5)
+      return
+    }
+  }
   if args.length() != 6 {
     println(
-      "Usage: flash-partition-check IMAGE.hex PARTITION START_HEX SIZE_HEX\n       flash-partition-check --linker IMAGE.hex SCRIPT.ld REGION",
+      "Usage: flash-partition-check IMAGE.hex PARTITION START_HEX SIZE_HEX\n       flash-partition-check --linker IMAGE.hex SCRIPT.ld REGION\n       flash-partition-check --manifest PLAN.json [--json]",
     )
     exit_with(2)
     return

@@ -4,6 +4,7 @@ package "Sam-Hui-dot/flash-partition-check/cmd/main"
 // Values
 
 // Errors
+type ImageInputError
 
 // Types and methods
 

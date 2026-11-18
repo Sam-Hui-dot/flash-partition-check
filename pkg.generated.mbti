@@ -6,17 +6,23 @@ import {
 }
 
 // Values
+pub fn audit_plan(FlashPlan, Map[String, Image]) -> AuditReport raise PlanError
+
 pub fn coalesce_violations(Array[Range]) -> Array[Range]
+
+pub fn make_plan(Array[PlanPartition], Array[ImageAssignment]) -> FlashPlan raise PlanError
 
 pub fn outside_partition(Image, Int64, Int64) -> Array[Range] raise FlashError
 
 pub fn parse(String) -> Image raise FlashError
 
+pub fn parse_manifest(String) -> FlashPlan raise PlanError
+
 pub fn partition_from_linker(String, String) -> Partition raise LayoutError
 
 // Errors
 pub suberror FlashError {
-  InvalidHex(Int, String)
+  InvalidHex(Int32, String)
   InvalidPartition
 }
 
@@ -24,22 +30,74 @@ pub suberror LayoutError {
   InvalidLayout(String)
 }
 
+pub suberror PlanError {
+  InvalidPlan(String)
+}
+
 // Types and methods
+pub(all) enum AuditIssue {
+  Outside(String, String, Range)
+  ReservedWrite(String, String, Range)
+  Collision(String, String, Range, Int32)
+}
+
+pub struct AuditReport {
+  images : Array[ImageSummary]
+  issues : Array[AuditIssue]
+}
+pub fn AuditReport::to_json(Self) -> String
+pub fn AuditReport::to_text(Self) -> String
+
+pub struct FlashPlan {
+  partitions : Array[PlanPartition]
+  images : Array[ImageAssignment]
+}
+
 pub struct Image {
   // private fields
 }
 
+pub(all) struct ImageAssignment {
+  name : String
+  file : String
+  partition : String
+}
+
+pub struct ImageSummary {
+  name : String
+  file : String
+  partition : String
+  bytes : Int64
+  first : Int64
+  end_exclusive : Int64
+}
+
+#derive(Eq, @debug.Debug)
 pub(all) struct Partition {
   name : String
   first : Int64
   size : Int64
-} derive(Eq, @debug.Debug)
+}
+pub fn Partition::equal(Self, Self) -> Bool
+pub fn Partition::not_equal(Self, Self) -> Bool
+pub fn Partition::to_repr(Self) -> @debug.Repr
 
+pub(all) struct PlanPartition {
+  name : String
+  first : Int64
+  size : Int64
+  reserved : Bool
+}
+
+#derive(Eq, @debug.Debug)
 pub struct Range {
   first : Int64
   end_exclusive : Int64
-  line : Int
-} derive(Eq, @debug.Debug)
+  line : Int32
+}
+pub fn Range::equal(Self, Self) -> Bool
+pub fn Range::not_equal(Self, Self) -> Bool
+pub fn Range::to_repr(Self) -> @debug.Repr
 
 // Type aliases
 
